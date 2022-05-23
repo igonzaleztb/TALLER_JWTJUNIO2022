@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+
+input{
+  margin: 2%;
+  width: 80%;
+  padding: 2%;
+  
+}
+button{
+  margin: 2%;
+
+  width: 85%;
+  padding: 3%;
+  background-color: red;
+  border: 1px solid rgb(255, 91, 91);
+  color: white;
+  border-radius: 2px;
+}
+
+section {
+  background-color: white;
+  text-align: center;
+  width: 70%;
+  margin-left: 15%;
+ margin-top: 40%;
+  padding-top: 15%;
+  padding-bottom: 15%;
+ border-radius: 12px;
+ border: 1px solid rgb(236, 236, 236);
+ box-shadow: rgb(236, 236, 236)  ;
+}
+
+
+</style>
+<body>
+ 
+  <section>
+    <h1>CONFIRMA TU USUARIO</h1>
+    <label for="">Introduce email</label>
+    <br>
+    <input type="text" name="email" id="email">
+ 
+  
+    <button id="send">Enviar</button>
+  
+
+  </section>
+ 
+  <script>
+
+    document.getElementById("send").addEventListener("click", function () {
+
+       let email = document.getElementById("email").value
+ 
+
+      let paginaActual = window.location.pathname;
+
+      const data = {  
+      email: email };
+
+
+      localStorage.setItem(
+        "auth",
+        JSON.stringify({
+          status: true,
+        })
+      );
+
+     
+      fetch(`${paginaActual}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+
+      alert("Se ha confimado su cuenta de usuario ")
+      location.href = "http://localhost:3000"
+
+
+    })
+ 
+  </script>
+</body>
+
+</html>
